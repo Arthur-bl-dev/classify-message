@@ -1,0 +1,8 @@
+README.md
+pyproject.toml
+app/main.py
+classify_message.egg-info/PKG-INFO
+classify_message.egg-info/SOURCES.txt
+classify_message.egg-info/dependency_links.txt
+classify_message.egg-info/entry_points.txt
+classify_message.egg-info/top_level.txt
