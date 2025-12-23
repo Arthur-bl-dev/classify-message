@@ -1,57 +1,57 @@
-# Classificador de Mensagens
+# Message Classifier
 
-API REST desenvolvida com FastAPI para classificar mensagens em português em diferentes categorias usando Machine Learning (Naive Bayes).
+REST API developed with FastAPI to classify messages in Portuguese into different categories using Machine Learning (Naive Bayes).
 
-## 📋 Sobre o Projeto
+## 📋 About the Project
 
-Este projeto classifica mensagens de texto em três categorias principais:
-- **Pergunta**: Mensagens que fazem perguntas sobre produtos, serviços ou informações
-- **Problema**: Mensagens relacionadas a problemas técnicos ou dificuldades
-- **Solicitação**: Mensagens que solicitam algo, como cupons de desconto
+This project classifies text messages into three main categories:
+- **Question**: Messages that ask questions about products, services, or information
+- **Problem**: Messages related to technical issues or difficulties
+- **Request**: Messages that request something, such as discount coupons
 
-O modelo utiliza:
-- **NLTK** para processamento de linguagem natural (stopwords em português)
-- **scikit-learn** com Naive Bayes Multinomial para classificação
-- **TF-IDF** para vetorização de texto
+The model uses:
+- **NLTK** for natural language processing (Portuguese stopwords)
+- **scikit-learn** with Multinomial Naive Bayes for classification
+- **TF-IDF** for text vectorization
 
-## 🚀 Instalação
+## 🚀 Installation
 
-### Pré-requisitos
-- Python 3.8 ou superior
+### Prerequisites
+- Python 3.8 or higher
 - pip
 
-### Passos
+### Steps
 
-1. Clone o repositório (ou navegue até o diretório do projeto)
+1. Clone the repository (or navigate to the project directory)
 
-2. Instale as dependências:
+2. Install dependencies:
 ```bash
 make install
 ```
-ou
+or
 ```bash
 pip install -r requirements.txt
 ```
 
-3. Inicie o servidor:
+3. Start the server:
 ```bash
 make run
 ```
 
-O servidor estará disponível em `http://localhost:8000`
+The server will be available at `http://localhost:8000`
 
-## 📖 Uso da API
+## 📖 API Usage
 
-### Endpoint de Classificação
+### Classification Endpoint
 
 **POST** `/classify`
 
-Classifica uma mensagem e retorna a categoria mais provável junto com a probabilidade.
+Classifies a message and returns the most likely category along with the probability.
 
 #### Request Body
 ```json
 {
-  "message": "Qual é o valor do produto X?"
+  "message": "What is the price of product X?"
 }
 ```
 
@@ -63,59 +63,59 @@ Classifica uma mensagem e retorna a categoria mais provável junto com a probabi
 }
 ```
 
-### Exemplos de Uso
+### Usage Examples
 
-#### Usando cURL
+#### Using cURL
 ```bash
 curl -X POST "http://localhost:8000/classify" \
      -H "Content-Type: application/json" \
-     -d '{"message": "Estou com problemas para realizar o pagamento"}'
+     -d '{"message": "I am having problems processing the payment"}'
 ```
 
-#### Usando Python
+#### Using Python
 ```python
 import requests
 
 response = requests.post(
     "http://localhost:8000/classify",
-    json={"message": "Gostaria de um cupom de desconto"}
+    json={"message": "I would like a discount coupon"}
 )
 print(response.json())
 ```
 
-### Documentação Interativa
+### Interactive Documentation
 
-Quando o servidor estiver rodando, acesse:
+When the server is running, access:
 - **Swagger UI**: `http://localhost:8000/docs`
 - **ReDoc**: `http://localhost:8000/redoc`
 
-## 🛠️ Tecnologias Utilizadas
+## 🛠️ Technologies Used
 
-- **FastAPI**: Framework web moderno e rápido para APIs
-- **scikit-learn**: Biblioteca de Machine Learning
-- **NLTK**: Biblioteca de processamento de linguagem natural
-- **Uvicorn**: Servidor ASGI de alta performance
+- **FastAPI**: Modern and fast web framework for APIs
+- **scikit-learn**: Machine Learning library
+- **NLTK**: Natural language processing library
+- **Uvicorn**: High-performance ASGI server
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```
 classify-message/
 ├── app/
-│   ├── main.py          # Aplicação FastAPI e rotas
-│   └── model.py         # Modelo de classificação e lógica ML
-├── requirements.txt     # Dependências do projeto
-├── makefile            # Comandos úteis
-└── README.md           # Este arquivo
+│   ├── main.py          # FastAPI application and routes
+│   └── model.py         # Classification model and ML logic
+├── requirements.txt     # Project dependencies
+├── makefile            # Useful commands
+└── README.md           # This file
 ```
 
-## 🔧 Comandos Disponíveis
+## 🔧 Available Commands
 
-- `make install`: Instala as dependências do projeto
-- `make run`: Inicia o servidor de desenvolvimento com reload automático
-- `make test`: Executa os testes (se configurados)
+- `make install`: Installs project dependencies
+- `make run`: Starts the development server with automatic reload
+- `make test`: Runs tests (if configured)
 
-## 📝 Notas
+## 📝 Notes
 
-- O modelo é treinado com um conjunto limitado de frases de exemplo
-- Para melhorar a precisão, considere expandir o dataset de treinamento
-- A primeira execução pode demorar um pouco devido ao download do corpus de stopwords do NLTK
+- The model is trained with a limited set of example phrases
+- To improve accuracy, consider expanding the training dataset
+- The first run may take a while due to downloading the NLTK stopwords corpus
