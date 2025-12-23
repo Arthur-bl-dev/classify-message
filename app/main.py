@@ -87,7 +87,7 @@ def classify(data: MessageRequest):
         return {
             "classification": classification,
             "probability": round(probability, 2),
-            "tenant_id": tenant.tenant_id
+            "tenant_id": tenant.tenant_id,
         }
     except Exception as e:
         raise HTTPException(
@@ -134,12 +134,25 @@ def create_tenant(data: TenantCreateRequest):
         )
 
 
-@app.get("/tenants", response_model=List[str])
+@app.get("/tenants", response_model=List[TenantResponse])
 def list_tenants():
     """
-    Lista todos os IDs de tenants cadastrados.
+    Lista todos os tenants cadastrados com seus dados completos.
     """
-    return tenant_manager.list_tenants()
+    tenant_configs = tenant_manager.list_tenants()
+    tenants = []
+    
+    for tenant in tenant_configs:
+        tenants.append({
+            "tenant_id": tenant.tenant_id,
+            "language": tenant.language,
+            "phrases": tenant.phrases,
+            "labels": tenant.labels,
+            "created_at": tenant.created_at.isoformat(),
+            "updated_at": tenant.updated_at.isoformat()
+        })
+    
+    return tenants
 
 
 @app.get("/tenants/{tenant_id}", response_model=TenantResponse)
