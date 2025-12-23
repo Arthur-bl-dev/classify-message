@@ -189,6 +189,7 @@ class TenantManager:
             "Gostaria de me tornar um revendedor",
             "Preciso de credenciais de API",
             "Quero solicitar aumento de limite",
+            "Gostaria de saber mais sobre o produto",
 
             # RECLAMAÇÃO - Reclamações sobre produtos ou serviços (50 exemplos)
             "O produto chegou com defeito",
@@ -552,6 +553,7 @@ class TenantManager:
             "Preciso de ajuda para recuperar conta",
             "Quero suporte para performance",
             "Estou com sistema lento",
+            "Preciso de ajuda para resolver um problema",
         ]
 
         default_labels = [
