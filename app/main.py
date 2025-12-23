@@ -1,4 +1,5 @@
 from fastapi import FastAPI, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel, Field
 from typing import List, Optional
 from .model import model_manager
@@ -7,6 +8,15 @@ from .tenant_manager import tenant_manager
 app = FastAPI(
     title="Classify Message - Multi-Tenant",
     description="API para classificação de mensagens com suporte multi-tenant. Cada tenant possui suas próprias phrases, labels e idioma."
+)
+
+# Configuração de CORS
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Permite todas as origens (em produção, especifique os domínios)
+    allow_credentials=True,
+    allow_methods=["*"],  # Permite todos os métodos (GET, POST, PUT, DELETE, etc.)
+    allow_headers=["*"],  # Permite todos os headers
 )
 
 
